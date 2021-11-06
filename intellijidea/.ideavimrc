@@ -1,0 +1,47 @@
+let mapleader = ","
+" Plugins
+set ignorecase
+set smartcase
+set surround
+set NERDTree
+set easymotion
+
+" Common
+set scrolloff=3
+set relativenumber
+set showmode
+set so=5
+
+" Idea specific
+set ideajoin
+set ideastatusicon=gray
+set idearefactormode=keep
+
+" system clipboard copy/paste
+noremap <Space>y "*y
+noremap <Space>p "*p
+
+" Key Mapping
+imap jj <esc>
+" --- Idea Actions
+" ------ Execution
+map <leader>rd <Action>(Debug)
+map <leader>rr <Action>(Run)
+map <leader>rs <Action>(Stop)
+map <leader>b <Action>(ToggleLineBreakpoint)
+" ------ Git
+map <leader>gr <Action>(ChangesView.Revert)
+" ------ Other
+map <leader>e <Action>(ShowErrorDescription)
+" ------ Code
+map <leader>crc <Action>(ReformatCode)
+map <leader>rn <Action>(RenameElement)
+map <leader>cr <Action>(Refactorings.QuickListPopupAction)
+map <leader>cs <Action>(SurroundWith)
+" ------ Window
+map <leader>z <Action>(ToggleZenMode)
+map <leader>sv <Action>(SplitVertically)
+map <leader>sh <Action>(SplitHorizontally)
+map <leader>h <Action>(NextSplitter)
+map <leader>l <Action>(PrevSplitter)
+map <leader>su <Action>(Unsplit)
