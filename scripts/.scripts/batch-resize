@@ -1,0 +1,19 @@
+#!/bin/bash
+#
+if [ $# -ne 4 ]; then
+  echo "usage: batch-resize <folder> <size in %> <img ext in> <img ext out>"
+  exit 1
+fi
+
+WORK_DIR=$1
+PERCENT=$2
+IMG_EXT_IN=$3
+IMG_EXT_OUT=$4
+OUT_DIR=$WORK_DIR/resized
+
+mkdir $OUT_DIR
+
+ls -A $WORK_DIR |
+    grep .*.$IMG_EXT_IN |
+    cut -d. -f1 |
+    xargs -I {FILENAME} convert $WORK_DIR/{FILENAME}.$IMG_EXT_IN -resize $PERCENT $OUT_DIR/{FILENAME}.$IMG_EXT_OUT
