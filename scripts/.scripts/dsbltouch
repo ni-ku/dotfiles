@@ -1,0 +1,2 @@
+#!/bin/bash
+xinput --list | grep Touchscreen | awk '{print $5}' | awk -F '=' '{print $2}' | xargs xinput disable

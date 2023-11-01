@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Calculates the days of my World Bicycle Tour
+# since i started on 2022-05-25
+
+START=2022-05-25
+ddiff=$(datediff $START $1)
+dotr=$(($ddiff + 1))
+echo $START "-" $1
+echo "----------------------------"
+echo "Days on the Road: " $dotr

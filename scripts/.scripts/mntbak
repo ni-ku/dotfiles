@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ "$#" -lt 1 ]; then
+    echo "usage:"
+    echo "mntbak.sh <open|close>"
+    exit 1
+fi
+
+ACTION=$1
+
+if [[ "$ACTION" = open ]]; then
+    sudo cryptsetup luksOpen /dev/sdb1 backup && sudo mount /dev/mapper/backup /home/nik/mnt/backup
+elif [[ "$ACTION" = close ]]; then
+    sudo umount /dev/mapper/backup && sudo cryptsetup luksClose backup
+fi

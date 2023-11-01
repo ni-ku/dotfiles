@@ -1,0 +1,60 @@
+#!/bin/bash
+#===============================================================================
+#
+#          FILE:  backup.sh
+#
+#         USAGE:  ./backup.sh
+#
+#   DESCRIPTION:  Create backup of a set of folders from your home directory
+#
+#       OPTIONS:  ---
+#  REQUIREMENTS:  ---
+#          BUGS:  ---
+#         NOTES:  ---
+#        AUTHOR:  Nils Knutz, niku@posteo.de
+#       COMPANY:  
+#       VERSION:  0.1
+#       CREATED:  28/28/2019 
+#      REVISION:  ---
+#===============================================================================
+DEST=$HOME
+BAKFILE=backup_$(date +%d%m%y).tar.gz
+
+DIRS=(
+    2D
+    3D
+    Dev
+    Documents
+    Music
+    Pictures
+    .scripts
+    .org
+    .vim
+)
+
+FILES=(
+    .config/xfce4/terminal/terminalrc
+)
+
+EXCLUDES="*.o"
+
+if [ ! -z "$1" ]; then
+    DEST=$1
+fi
+
+tar --create \
+	--verbose \
+	--gzip \
+	--exclude-caches-all \
+	--exclude=$EXCLUDES \
+	--file $BAKFILE -C $HOME ${DIRS[*]} ${FILES[*]}
+
+if [ $? -gt 0 ]; then
+    echo "Error creating Archive"
+    if [ -f $BAKFILE ]; then
+        rm $BAKFILE
+    fi
+    exit 1
+fi
+
+mv $BAKFILE $DEST
