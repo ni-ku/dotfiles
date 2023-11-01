@@ -137,6 +137,8 @@ export VISUAL="emacsclient -t -a emacs"
 export RBENV_VERSION=2.6.8
 export PATH=$PATH:"${HOME}/.rbenv/versions/$(rbenv global)/bin/"
 export PATH=$PATH:"${HOME}/.scripts"
+export PATH=$PATH:"${HOME}/Flutter/flutter"
+export PATH=$PATH:"${HOME}/Android/dart-sdk/bin"
 
 alias ..="cd .."
 alias ...="cd ../.."
@@ -158,4 +160,12 @@ alias reload="source ~/.bashrc"
 alias ec="emacsclient -t"
 alias emacs="emacsclient -c"
 
-eval "$(starship init bash)"
+countdown() {
+    start="$(( $(date '+%s') + $1))"
+    while [ $start -ge $(date +%s) ]; do
+        time="$(( $start - $(date +%s) ))"
+        printf '%s\r' "$(date -u -d "@$time" +%H:%M:%S)"
+        sleep 0.1
+    done
+    notify-send 'Timer expired' --icon=dialog-information
+}
