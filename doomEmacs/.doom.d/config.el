@@ -15,7 +15,7 @@
 ;; yes i want to quit
 (setq confirm-kill-emacs nil)
 
-(setq-hook! 'web-mode-hook +format-with 'prettier-prettify)
+;;(setq-hook! 'web-mode-hook +format-with 'prettier-prettify)
 
 (load! "+ui")
 (load! "+editor")
